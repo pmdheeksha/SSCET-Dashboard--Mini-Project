@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSCET - Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js Library from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div class="header-inner">
+      <div class="logo">🎓</div>
+      <div class="htxt">
+        <h1>Sri Shanmugha College of Engineering and Technology</h1>
+        <p>Academic Performance & Student Intelligence Dashboard</p>
+      </div>
+      <div class="hbadge" id="ltm">⚡ LIVE</div>
+    </div>
+  </div>
+
+  <!-- ===== SLICERS (FILTERS) ===== -->
+  <div class="slicer-bar">
+    <!-- Department Filter -->
+    <select id="sd" onchange="applyF()">
+      <option value="">All Departments</option>
+      <option>AI & DS</option>
+      <option>CSE</option>
+      <option>IT</option>
+      <option>Cyber Security</option>
+      <option>ECE</option>
+      <option>BME</option>
+      <option>Mechanical Engineering</option>
+    </select>
+
+    <!-- Year Filter -->
+    <select id="sy" onchange="applyF()">
+      <option value="">All Years</option>
+      <option>II Year</option>
+      <option>III Year</option>
+      <option>IV Year</option>
+    </select>
+
+    <!-- Section Filter -->
+    <select id="ss" onchange="applyF()">
+      <option value="">All Sections</option>
+      <option>A</option><option>B</option><option>C</option>
+    </select>
+
+    <!-- Gender Filter -->
+    <select id="sg2" onchange="applyF()">
+      <option value="">All Genders</option>
+      <option>Male</option><option>Female</option>
+    </select>
+
+    <!-- Placement Filter -->
+    <select id="sp" onchange="applyF()">
+      <option value="">All</option>
+      <option>Eligible</option><option>Ineligible</option>
+    </select>
+
+    <!-- Internship Filter -->
+    <select id="si" onchange="applyF()">
+      <option value="">All</option>
+      <option>Paid Internship</option>
+      <option>Unpaid Internship</option>
+      <option>Not Started</option>
+    </select>
+
+    <!-- Reset Button -->
+    <button onclick="resetF()">↺ Reset</button>
+    <span>Showing: <strong id="fc">1385</strong> students</span>
+  </div>
+
+  <!-- ===== SEARCH BOX ===== -->
+  <div class="srch-sec">
+    <input type="text"
+           id="srch"
+           placeholder="Search by Name or SIN No..."
+           oninput="doSearch()"
+           autocomplete="off">
+  </div>
+
+  <!-- ===== STUDENT PROFILE PANEL (appears after search) ===== -->
+  <div class="pp" id="pp"></div>
+
+  <!-- ===== KPI CARDS ===== -->
+  <div class="kgrid" id="kgrid"></div>
+
+  <!-- ===== DEPARTMENT CARDS ===== -->
+  <div class="dgrid" id="dgrid"></div>
+
+  <!-- ===== CHARTS ===== -->
+  <canvas id="ch-dept"></canvas>  <!-- Students per Department -->
+  <canvas id="ch-cgpa"></canvas>  <!-- CGPA Distribution -->
+  <canvas id="ch-att"></canvas>   <!-- Attendance Bands -->
+  <canvas id="ch-pl"></canvas>    <!-- Placement Eligibility -->
+  <canvas id="ch-in"></canvas>    <!-- Internship Status -->
+  <canvas id="ch-g"></canvas>     <!-- Gender Split -->
+
+  <!-- ===== STUDENT DATA TABLE ===== -->
+  <table>
+    <thead>
+      <tr>
+        <th>SIN No</th><th>Name</th><th>Dept</th>
+        <th>Year</th><th>Sec</th><th>Gender</th>
+        <th>Att%</th><th>CGPA</th><th>Arrears</th>
+        <th>IA1</th><th>IA2</th><th>Certs</th>
+        <th>Proj</th><th>Internship</th><th>Placement</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+<script src="script.js"></script>
+</body>
+</html>
